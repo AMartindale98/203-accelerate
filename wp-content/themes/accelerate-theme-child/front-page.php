@@ -22,6 +22,26 @@ get_header(); ?>
 			<?php endwhile; // end of the loop. ?>
 		</div><!-- .main-content -->
 	</div><!-- #primary -->
+	<section class="featured-work">
+		<h4 class="featured-title">Featured Work</h4>
+		<ul class="featured-flex">
+			<?php query_posts('posts_per_page=3&post_type=case_studies'); ?>
+			<?php while ( have_posts() ) : the_post(); 
+			$image = get_field('image_1');
+			$size = 'medium';
+			?>
+			<a href="<?php the_permalink(); ?>">
+				<li>
+					<figure>
+						<?php echo wp_get_attachment_image( $image, $size ); ?>
+					</figure>
+					<h3><?php the_title(); ?></h3>
+				</li>
+			</a>
+			<?php endwhile; ?>
+			<?php wp_reset_query(); ?>
+		</ul>
+	</section>
 	<section class="recent-posts">
 		<div class="site-content">
 			<div class="blog-post">
